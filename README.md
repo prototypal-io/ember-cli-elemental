@@ -1,25 +1,9 @@
-# Ember-cli-theme-editor
+# ember-cli-elemental
 
-This README outlines the details of collaborating on this Ember addon.
+This is the core package for using Elemental with Ember CLI. It includes the APIs necessary to support the Elemental Theme Editor.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+Inside of your Ember CLI application:
 
-## Running
-
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+`ember install git+https://git.prototypal.io/elemental/ember-cli-elemental.git`
