@@ -11,7 +11,7 @@ module.exports = {
     var app = config.app;
     var options = config.options;
     var project = options.project;
-    var themeFile = path.join(__dirname, 'theme.json');
+    var themeFile = path.resolve(__dirname, '../..', 'theme.json');
 
     app.use(bodyParser.json());
     app.use(cors());
@@ -42,7 +42,7 @@ module.exports = {
       console.log('posted ' + Object.keys(req.body));
       var themeJson = req.body;
 
-      fs.writeFileSync(themeFile, JSON.stringify(themeJson));
+      fs.writeFileSync(themeFile, JSON.stringify(themeJson, null, '  '));
       res.json({theme: req.body});
       next();
     });
