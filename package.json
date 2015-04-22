@@ -37,6 +37,7 @@
     "ember-addon"
   ],
   "dependencies": {
+    "body-parser": "^1.12.3",
     "cors": "^2.5.3",
     "ember-cli-babel": "^4.0.0"
   },
