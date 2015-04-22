@@ -21,7 +21,7 @@ module.exports = function(environment) {
 
   ENV.contentSecurityPolicy = {
     // '*': '*'
-    // 'connect-src': "'self' http://localhost:4200"
+    'connect-src': "'self' http://localhost:4200 chrome-extension://hgmloofddffdnphfgcellkdfbfbjeloo"
   }
 
 

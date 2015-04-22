@@ -3,6 +3,7 @@
 var fs = require('fs');
 var path = require('path');
 var bodyParser = require('body-parser');
+var cors = require('cors')
 
 module.exports = {
   name: 'ember-cli-theme-editor',
@@ -13,32 +14,37 @@ module.exports = {
     var themeFile = path.join(__dirname, 'theme.json');
 
     app.use(bodyParser.json());
+    app.use(cors());
 
     app.get('/theme', function(req, res, next) {
-      fs.exists(themeFile, function(exists) {
-        var output;
-        if (exists) {
-          fs.readFile(themeFile, 'utf-8', function(err, data) {
-            res.json(data);
-            next();
-          });
-        } else {
-          res.json({});
-          next();
+      // TODO: read node_modules/*/package.json and extract the metadata for elemental packages
+      // send down something like:
+      /*
+        {
+          components: [
+            {name: 'ele-calendar', themes: [{backgroundColor: 'units'}]}
+          ],
+          theme: {
+            // contents of theme.json
+          }
         }
-      });
+      */
+      if (fs.existsSync(themeFile)) {
+        var data = fs.readFileSync(themeFile);
+        res.end(data);
+      } else {
+        res.json({});
+      }
+      next();
     });
 
     app.post('/theme', function(req, res, next) {
-      var requestData = JSON.stringify(req.body, null, '  ');
-      fs.writeFile(themeFile, requestData, function(err) {
-        if (err) {
-          res.json({ error: err });
-        } else {
-          res.status(200);
-        }
-        next();
-      });
+      console.log('posted ' + Object.keys(req.body));
+      var themeJson = req.body;
+
+      fs.writeFileSync(themeFile, JSON.stringify(themeJson));
+      res.json({theme: req.body});
+      next();
     });
   }
 };
