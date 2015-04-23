@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors')
 
 module.exports = {
-  name: 'ember-cli-theme-editor',
+  name: 'ember-cli-elemental',
   serverMiddleware: function(config) {
     var app = config.app;
     var options = config.options;
