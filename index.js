@@ -11,7 +11,7 @@ module.exports = {
     var app = config.app;
     var options = config.options;
     var project = options.project;
-    var themeFile = path.resolve(__dirname, '../..', 'theme.json');
+    var themeFile = path.resolve(project.root, 'theme.json');
 
     app.use(bodyParser.json());
     app.use(cors());
@@ -31,6 +31,7 @@ module.exports = {
       */
       if (fs.existsSync(themeFile)) {
         var data = fs.readFileSync(themeFile);
+        res.set('Content-Type', 'application/json');
         res.end(data);
       } else {
         res.json({});
